@@ -2,8 +2,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from './common/Slider';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeCut, setCurrentTimeSeekbar } from '../redux/actions';
+import { removeCut, setCurrentSegment, setCurrentTimeSeekbar } from '../redux/actions';
 import theme from '../themes/theme';
+import { getCurrentSegmentFromCuts } from '../utils/getCurrentSegmentFromCuts';
 
 function VideoSeekSlider({ timeRef }) {
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function VideoSeekSlider({ timeRef }) {
     const cuts = useSelector((state) => state.ui.cuts);
     const sliderRef = useRef(null);
     const [sliderRect, setSliderRect] = useState(null);
+    const currentSegment = useSelector((state) => state.ui.currentSegment);
 
     const handleSeekChange = (newTime) => {
         dispatch(setCurrentTimeSeekbar(newTime));
@@ -21,7 +23,17 @@ function VideoSeekSlider({ timeRef }) {
         if (timeRef) {
             timeRef.current = currentTime;
         }
+        dispatch(setCurrentSegment(getCurrentSegmentFromCuts(currentTime, videoLength, cuts)));
     }, [currentTime]);
+
+    useEffect(() => {
+        let currSegment = getCurrentSegmentFromCuts(currentTime, videoLength, cuts);
+
+        
+
+
+        dispatch(setCurrentSegment(getCurrentSegmentFromCuts(currentTime, videoLength, cuts)));
+    }, [cuts]);
 
     useEffect(() => {
         const updateSliderRect = () => {
@@ -60,6 +72,7 @@ function VideoSeekSlider({ timeRef }) {
                 width: '100%',
             }}
         >
+            <div style={{ position: 'absolute', width: `calc(${calculateCutPosition(currentSegment.end)} - ${calculateCutPosition(currentSegment.start)})`, height: '2px', top: "-24px", left: calculateCutPosition(currentSegment.start), backgroundColor: theme.colors.buttonPrimary }} />
             {cuts.map((cut, index) => (
                 <div
                     key={index}

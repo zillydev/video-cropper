@@ -14,3 +14,6 @@ export const ADD_CUT = 'ADD_CUT';
 export const REMOVE_CUT = 'REMOVE_CUT';
 export const SYNC_CROPPER = 'SYNC_CROPPER';
 export const SET_CURRENT_CUT = 'SET_CURRENT_CUT';
+export const ADD_SEGMENT = 'ADD_SEGMENT';
+export const REMOVE_SEGMENT = 'REMOVE_SEGMENT';
+export const SET_CURRENT_SEGMENT = 'SET_CURRENT_SEGMENT';

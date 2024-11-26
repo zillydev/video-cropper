@@ -1,4 +1,4 @@
-import { SET_CURRENT_TAB, SET_PLAYBACK_SPEED, SET_CROPPER_ASPECT_RATIO, SET_CROPPER_ACTIVE, SET_VIDEO_PLAYING, SET_VIDEO_LENGTH, SET_CURRENT_TIME, SET_VOLUME, SET_CROPPER_POSITION, SET_CROPPER_SIZE, SET_CURRENT_TIME_SEEKBAR, SYNC_CROPPER, ADD_CUT, REMOVE_CUT, SET_CURRENT_CUT } from '../actionTypes';
+import { SET_CURRENT_TAB, SET_PLAYBACK_SPEED, SET_CROPPER_ASPECT_RATIO, SET_CROPPER_ACTIVE, SET_VIDEO_PLAYING, SET_VIDEO_LENGTH, SET_CURRENT_TIME, SET_VOLUME, SET_CROPPER_POSITION, SET_CROPPER_SIZE, SET_CURRENT_TIME_SEEKBAR, SYNC_CROPPER, ADD_CUT, REMOVE_CUT, SET_CURRENT_CUT, SET_CURRENT_SEGMENT, ADD_SEGMENT, REMOVE_SEGMENT } from '../actionTypes';
 
 export const setCurrentTab = (tab) => ({
     type: SET_CURRENT_TAB,
@@ -73,4 +73,19 @@ export const syncCropper = (cropperInfo) => ({
 export const setCurrentCut = (cut) => ({
     type: SET_CURRENT_CUT,
     payload: cut,
+});
+
+export const addSegmnet = (segment) => ({
+    type: ADD_SEGMENT,
+    payload: segment,
+});
+
+export const removeSegment = (segment) => ({
+    type: REMOVE_SEGMENT,
+    payload: segment,
+});
+
+export const setCurrentSegment = (segment) => ({
+    type: SET_CURRENT_SEGMENT,
+    payload: segment,
 });

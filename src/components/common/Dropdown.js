@@ -13,9 +13,13 @@ const StyledDropdown = styled.div`
     top: 115%;
     left: 0;
     width: 100%;
-    max-height: 125px;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow: hidden;
+`;
+
+const StyledDropdownScrollContainer = styled.div`
+    overflow-y: scroll;
+    max-height: 125px;
 
     &::-webkit-scrollbar {
         width: 0.5em;
@@ -69,6 +73,7 @@ function Dropdown({ options, selected, text, icon, onOptionSelect }) {
 
             {isOpen && (
                 <StyledDropdown>
+                    <StyledDropdownScrollContainer>
                     {options.map((option, index) => (
                         <StyledDropdownOption
                             key={index}
@@ -81,6 +86,7 @@ function Dropdown({ options, selected, text, icon, onOptionSelect }) {
                             {option.text}
                         </StyledDropdownOption>
                     ))}
+                    </StyledDropdownScrollContainer>
                 </StyledDropdown>
             )}
         </div>
