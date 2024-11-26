@@ -2,6 +2,8 @@
 
 A web-based video crop tool with an easy-to-use UI.
 
+Live at https://video-cropper-dun.vercel.app/
+
 ## Features
 
 1. Responsive video player with playback speed and volume control.
